@@ -71,6 +71,7 @@ const { title } = Astro.props;
     padding: 48px;
     overflow-y: auto;
     scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
   }
 
   @media (max-width: 700px) {
@@ -94,6 +95,7 @@ const { title } = Astro.props;
       padding: 24px;
       overflow: visible;
       scroll-behavior: smooth;
+      scroll-snap-type: none;
     }
   }
 </style>

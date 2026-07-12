@@ -31,9 +31,49 @@
   }
 
   a {
+    position: relative;
+    padding-left: 18px;
+    opacity: 0.55;
     color: white;
     text-decoration: none;
+    transition:
+        opacity 0.3s;
+        color 0.3s;
   }
+
+  a.active{
+    color: white;
+    opacity: 1;
+  }
+
+nav a,
+nav a:visited {
+  display: block;
+  padding: 8px 12px;
+  color: inherit;
+  opacity: 0.6;
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  transition:
+    opacity 0.3s,
+    background-color 0.3s,
+    border-color 0.3s;
+}
+
+nav a:hover {
+  color: inherit;
+  opacity: 1;
+  text-decoration: none;
+  background-color: rgb(255 255 255 / 8%);
+}
+
+nav a.active {
+  color: inherit;
+  opacity: 1;
+  font-weight: bold;
+  background-color: rgb(255 255 255 / 10%);
+  border-left-color: white;
+}
 
   a:hover {
     opacity: 0.7;
@@ -53,6 +93,64 @@
         flex-wrap: wrap;
         gap: 12px;
     }
+
+    nav a,
+    nav a:visited{
+        padding: 8px 4px;
+        border-left: 0;
+        border-bottom: 2px solid transparent;
+    }
+
+    nav a.active{
+        border-bottom-color: white;
+    }
 }
 
 </style>
+
+<script>
+      const links = [
+    ...document.querySelectorAll<HTMLAnchorElement>('nav a[href^="#"]'),
+  ];
+
+  const sections = links
+    .map((link) => document.querySelector<HTMLElement>(link.hash))
+    .filter((section): section is HTMLElement => section !== null);
+
+  function updateActiveLink() {
+    const markerPosition = window.innerHeight * 0.35;
+    let currentSection = sections[0];
+
+    for (const section of sections) {
+      if (section.getBoundingClientRect().top <= markerPosition) {
+        currentSection = section;
+      }
+    }
+
+    for (const link of links) {
+      const isActive = link.hash === `#${currentSection.id}`;
+
+      link.classList.toggle("active", isActive);
+
+      if (isActive) {
+        link.setAttribute("aria-current", "location");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    }
+  }
+
+  const content = document.querySelector(".content");
+
+  content?.addEventListener("scroll", updateActiveLink, {
+    passive: true,
+  });
+
+  window.addEventListener("scroll", updateActiveLink, {
+    passive: true,
+  });
+
+  window.addEventListener("resize", updateActiveLink);
+
+  updateActiveLink();
+</script>
