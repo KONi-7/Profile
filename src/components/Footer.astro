@@ -1,0 +1,27 @@
+---
+const year=new Date().getFullYear();
+---
+
+<footer>
+    <p>© {year} My Site </p>
+</footer>
+
+<style>
+    footer {
+        padding: 12px;
+        text-align: center;
+        background-color: #202020;
+        color:white;
+    }
+
+    footer{
+        margin: 0;
+    }
+
+    @media (max-width: 700px){
+        footer{
+            padding: 20px 0 0;
+            text-align: right;
+        }
+    }
+</style>
