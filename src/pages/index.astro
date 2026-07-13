@@ -26,7 +26,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <h2 class="section-heading">About</h2>
       <p>名前：西浦 昊河 (Nishiura Koga)</p>
 	  <p>大学：豊橋技術科学大学 情報・知能工学課程 3年</p>
-	  <p>趣味：音楽，筋トレ</p>
+	  <p>趣味：音楽，運動</p>
 	  <h3>興味のある分野</h3>
 	  <ul>
 		<li>Web開発</li>
@@ -118,16 +118,107 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <section id="works">
     <div class="section-content">
       <h2 class="section-heading">Works</h2>
-      <p>制作物を掲載します。</p>
+
+      <div class="works-list">
+        <article class="work-item">
+          <div class="work-image">
+            <img
+              src="/works/portfolio_demo.png"
+              alt="works 1"
+            />
+          </div>
+
+          <div class="work-description">
+            <h3>Portfolio Website</h3>
+            <p class="work-summary">
+              自分のプロフィールや制作物を紹介するためのWebサイトです．
+            </p>
+
+            <p>
+              情報を見つけやすいシンプルな構成と，スクロール時の
+              アニメーションを意識して制作しました．
+            </p>
+
+            <dl class="work-info">
+              <div>
+                <dt>使用技術</dt>
+                <dd>Astro / HTML / CSS / JavaScript</dd>
+              </div>
+            </dl>
+
+            <div class="work-links">
+              <a href="https://github.com/KONi-7/Profile.git" target="_blank">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="work-item">
+          <div class="work-image">
+            <img
+              src="/works/zonbi_game.png"
+              alt="works 2"
+            />
+          </div>
+
+          <div class="work-description">
+            <h3>Zombie Game</h3>
+            <p class="work-summary">
+              Unityで制作したFPSゲームです．
+            </p>
+
+            <p>
+              次々と現れるゾンビを倒しながら，ハイスコアを目指すFPSゲームです．
+              ゾンビを倒すたびにスコアが加算されるようにし，プレイヤーが成長や達成感を
+              感じられるようにしました．
+            </p>
+
+            <dl class="work-info">
+              <div>
+                <dt>使用技術</dt>
+                <dd>Unity / C#</dd>
+              </div>
+            </dl>
+
+          </div>
+        </article>
+
+        <article class="work-item">
+          <div class="work-image">
+            <img
+              src="/works/block_game.png"
+              alt="works 3"
+            />
+          </div>
+
+          <div class="work-description">
+            <h3>Block Breaker</h3>
+            <p class="work-summary">
+              C++とDxLibで制作したWindows向けゲームです．
+            </p>
+
+            <p>
+              当たり判定，接触位置による反射方向の変化，ゲームの状態管理
+              などの実装を行いました．
+            </p>
+
+            <dl class="work-info">
+              <div>
+                <dt>使用技術</dt>
+                <dd>C++ / DxLib / Visual Studio</dd>
+              </div>
+            </dl>
+
+            <div class="work-links">
+              <a href="https://github.com/KONi-7/koga_main_repository.git" target="_blank">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      
     </div>
   </section>
 
-  <section id="contact">
-    <div class="section-content">
-      <h2 class="section-heading">Contact</h2>
-      <p>お問い合わせ情報です。</p>
-    </div>
-  </section>
 </BaseLayout>
 
 <style>
@@ -220,6 +311,55 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   object-fit: contain;
 }
 
+.works-list {
+  display: grid;
+  gap: 80px;
+}
+
+.work-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 1fr);
+  align-items: center;
+  gap: 48px;
+}
+
+.work-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+}
+
+.work-description h3 {
+  margin: 0 0 12px;
+  font-size: 1.6rem;
+}
+
+.work-summary {
+  font-weight: 600;
+}
+
+.work-info div {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  margin-top: 12px;
+}
+
+.work-info dt {
+  color: #666;
+}
+
+.work-info dd {
+  margin: 0;
+}
+
+.work-links {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+}
+
   @media (max-width: 700px) {
     section {
       padding: 48px 24px;
@@ -228,6 +368,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	.skills-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+      .work-item {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
   }
 
   @media (prefers-reduced-motion: reduce) {
